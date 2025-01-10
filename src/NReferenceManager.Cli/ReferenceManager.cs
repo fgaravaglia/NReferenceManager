@@ -92,7 +92,7 @@ namespace NReferenceManager.Cli
                     foreach (var reference in referenceSettings.References)
                     {
                         LogInformation($" > Setting {reference.PackageName} to Version {reference.PackageVersion}...");
-                        SetPackageVersion(reference, proj);
+                        ProjectFileUpdater.UpdatePackageReferenceVersion(reference, proj);
                     }
                 }
                 return 0;
@@ -109,25 +109,8 @@ namespace NReferenceManager.Cli
 
         IEnumerable<FileInfo> GetCsProjList()
         {
-            return [];
-        }
-
-        void SetPackageVersion(ReferenceDto reference, FileInfo csProjFile)
-        {
-            ArgumentNullException.ThrowIfNull(reference);
-            ArgumentNullException.ThrowIfNull(csProjFile);
-
-            // read CsProj content
-
-            // if not referened, skip the update
-            bool isReferenced = false;
-            if (!isReferenced)
-            {
-                LogInformation($"   > Not referenced");
-                return;
-            }
-
-            // updating csProj Files
+            var files = ProjectFileFinder.GetCsprojFiles(this._Settings.RepositoryRootPath);
+            return files.Select(x => new FileInfo(x));
         }
 
         void LogWarning(string message)
