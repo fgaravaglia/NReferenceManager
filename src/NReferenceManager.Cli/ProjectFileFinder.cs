@@ -17,11 +17,13 @@ namespace NReferenceManager.Cli
         {
             try
             {
+                // check file in current directory
                 foreach (string file in Directory.GetFiles(directoryPath, "*.csproj"))
                 {
                     csprojFiles.Add(file);
                 }
 
+                // check file in sub directories
                 foreach (string directory in Directory.GetDirectories(directoryPath))
                 {
                     FindCsprojFiles(directory, csprojFiles);

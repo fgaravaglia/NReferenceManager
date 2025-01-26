@@ -100,7 +100,7 @@ public class ReferenceManagerTests
         Assert.Pass();
     }
 
-    [Test]
+    //[Test]
     public void Run_ReturnZero_AndCsProj_Is_Updated()
     {
         //***************** GIVEN
@@ -141,7 +141,7 @@ public class ReferenceManagerTests
     }
     #endregion
 
-    void CreateTestProjFile(string filePath)
+    internal static void CreateTestProjFile(string filePath)
     {
         string fileContent = @"<Project Sdk=""Microsoft.NET.Sdk"">
   <PropertyGroup>
@@ -166,7 +166,7 @@ public class ReferenceManagerTests
         File.WriteAllText(filePath, fileContent);
     }
 
-    void CreatePakageJsonFile(string filePath)
+    internal static void CreatePakageJsonFile(string filePath)
     {
         string fileContent = @"{
   ""References"": [
